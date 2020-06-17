@@ -68,54 +68,9 @@ namespace Revision_Sheet.DataAccess
             return id;
         }
 
-        public List<CourseEntities> FindAllChaptersByCourse(int courseId)
+        public List<CourseEntities> FindAllCourseByUser(int courseId)
         {
-            List<CourseEntities> coursesEntities = new List<CourseEntities>();
-
-            try
-            {
-                this.connection.Open();
-
-                MySqlCommand cmd = this.connection.CreateCommand();
-
-                cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME;
-
-                IDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        CourseEntities courseEntities = new CourseEntities();
-                        try
-                        {
-
-                            courseEntities.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                            courseEntities.UserId = Int32.Parse(String.Format("{0}", reader[2]));
-                        }
-                        catch (Exception e)
-                        {
-
-                            Console.WriteLine(e.Message);
-                        }
-                        courseEntities.Name = String.Format("{0}", reader[1]);
-                        
-
-                        coursesEntities.Add(courseEntities);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                this.connection.Close();
-            }
-
-            return coursesEntities;
+            throw new NotImplementedException();
         }
 
         public CourseEntities FindById(int id)

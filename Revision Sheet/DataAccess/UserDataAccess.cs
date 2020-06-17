@@ -169,13 +169,10 @@ namespace RevisionSheet.DataAccess.DataAccess
             UserEntities user = new UserEntities();
             try
             {
-                // Ouverture de la connexion SQL
                 this.connection.Open();
 
-                // Création d'une commande SQL en fonction de l'objet connection
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-                // Requête SQL
                 cmd.CommandText = "UPDATE " + Constants.USER_TABLE_NAME + " SET '" + Constants.USER_COLUMN_NAME_FIRST_NAME + "' = " + obj.FirstName + ", '" + Constants.USER_COLUMN_NAME_LAST_NAME + "' " + obj.LastName + ", " +
                   Constants.USER_COLUMN_NAME_LOGIN + "' " + obj.Login + ", " +
                   Constants.USER_COLUMN_NAME_PASSWORD + "' " + obj.Password + ", " +

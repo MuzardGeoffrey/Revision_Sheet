@@ -8,25 +8,25 @@ namespace RevisionSheet.DataAccess.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public int UserId { get; set; }
+        public int ChapterId { get; set; }
 
         public SheetEntities()
         {
         }
 
-        public SheetEntities(string title, string content, int userId)
+        public SheetEntities(string title, string content, int chapterId)
         {
             this.Title = title;
             this.Content = content;
-            this.UserId = userId;
+            this.ChapterId = chapterId;
         }
 
-        public SheetEntities(int id, string title, string content, int userId)
+        public SheetEntities(int id, string title, string content, int chapterId)
         {
             this.Id = id;
             this.Title = title;
             this.Content = content;
-            this.UserId = userId;
+            this.ChapterId = chapterId;
         }
 
     }

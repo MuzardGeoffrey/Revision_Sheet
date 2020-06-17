@@ -7,6 +7,6 @@ namespace RevisionSheet.DataAccess.IDataAccess
 {
     interface ICourseDataAccess : IBaseDataAccess<CourseEntities>
     {
-        public List<CourseEntities> FindAllChaptersByCourse(int courseId); 
+        public List<CourseEntities> FindAllCourseByUser(int courseId); 
     }
 }
