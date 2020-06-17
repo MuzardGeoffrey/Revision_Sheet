@@ -114,6 +114,11 @@ namespace Revision_Sheet.DataAccess
             return sheetEntities;
         }
 
+        public List<SheetEntities> FindAllSheetByChapter()
+        {
+            throw new NotImplementedException();
+        }
+
         public SheetEntities FindById(int id)
         {
             SheetEntities user = new SheetEntities();
