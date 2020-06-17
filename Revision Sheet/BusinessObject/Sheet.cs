@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Revision_Sheet.BusinessObject
 {
-    public class Course
+    public class Sheet
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Chapter> ChapterList { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
     }
 }

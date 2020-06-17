@@ -5,9 +5,10 @@ namespace RevisionSheet.DataAccess.Entities
         
     public class SheetEntities
     {
-        public string Content { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Content { get; set; }
+        public int UserId { get; set; }
 
         public SheetEntities()
         {
@@ -17,6 +18,7 @@ namespace RevisionSheet.DataAccess.Entities
         {
             this.Title = title;
             this.Content = content;
+            this.UserId = userId;
         }
 
         public SheetEntities(int id, string title, string content, int userId)
@@ -24,6 +26,7 @@ namespace RevisionSheet.DataAccess.Entities
             this.Id = id;
             this.Title = title;
             this.Content = content;
+            this.UserId = userId;
         }
 
     }
