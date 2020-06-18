@@ -1,8 +1,4 @@
 ﻿using RevisionSheet.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Revision_Sheet.BusinessObject
 {
@@ -40,18 +36,20 @@ namespace Revision_Sheet.BusinessObject
             this.Password = password;
         }
 
-        public User(UserEntity userEntities)
-        {
-            this.Id = userEntities.Id;
-            this.FirstName = userEntities.FirstName;
-            this.LastName = userEntities.LastName;
-            this.Login = userEntities.Login;
-            this.Password = userEntities.Password;
-
-        }
-
         public User()
         {
+        }
+
+        public UserEntity UserEntityConvertion()
+        {
+            return new UserEntity
+            {
+                Id = this.Id,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Login = this.Login,
+                Password = this.Password
+            };
         }
     }
 }

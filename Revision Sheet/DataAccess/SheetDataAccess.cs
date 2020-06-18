@@ -6,8 +6,6 @@ using RevisionSheet.DataAccess.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Revision_Sheet.DataAccess
 {
@@ -50,11 +48,9 @@ namespace Revision_Sheet.DataAccess
 
                 cmd.CommandText = "DELETE FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
                 id = cmd.ExecuteNonQuery();
-
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -80,7 +76,7 @@ namespace Revision_Sheet.DataAccess
 
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                   SheetEntity sheet = new SheetEntity();
+                    SheetEntity sheet = new SheetEntity();
                     while (reader.Read())
                     {
                         for (int k = 0; k < reader.FieldCount; k++)
@@ -92,7 +88,6 @@ namespace Revision_Sheet.DataAccess
                             }
                             catch (Exception e)
                             {
-
                                 Console.WriteLine(e.Message);
                             }
                             sheet.Title = String.Format("{0}", reader[1]);
@@ -104,7 +99,6 @@ namespace Revision_Sheet.DataAccess
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -126,12 +120,9 @@ namespace Revision_Sheet.DataAccess
             {
                 this.connection.Open();
 
-
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-
                 cmd.CommandText = "SELECT * FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
-
 
                 IDataReader reader = cmd.ExecuteReader();
 
@@ -146,18 +137,15 @@ namespace Revision_Sheet.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         user.Title = String.Format("{0}", reader[1]);
                         user.Content = String.Format("{0}", reader[2]);
-                        
                     }
                 }
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -183,7 +171,6 @@ namespace Revision_Sheet.DataAccess
 
                 IDataReader reader = cmd.ExecuteReader();
 
-
                 while (reader.Read())
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
@@ -195,7 +182,6 @@ namespace Revision_Sheet.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         sheet.Title = String.Format("{0}", reader[1]);
@@ -205,7 +191,6 @@ namespace Revision_Sheet.DataAccess
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally

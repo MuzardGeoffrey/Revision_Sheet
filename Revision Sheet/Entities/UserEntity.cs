@@ -1,17 +1,9 @@
 ﻿using Revision_Sheet.BusinessObject;
-using System;
-using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.Entities
 {
     public class UserEntity
     {
-        public string FirstName { get; set; }
-        public int Id { get; set; }
-        public string LastName { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-
         public UserEntity()
         {
         }
@@ -33,14 +25,22 @@ namespace RevisionSheet.DataAccess.Entities
             this.Password = password;
         }
 
-        public UserEntity(User user)
-        {
-            this.Id = user.Id;
-            this.FirstName = user.FirstName;
-            this.LastName = user.LastName;
-            this.Login = user.Login;
-            this.Password = user.Password;
-        }
+        public string FirstName { get; set; }
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
 
+        public User UserConvertion()
+        {
+            return new User
+            {
+                Id = this.Id,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Login = this.Login,
+                Password = this.Password
+            };
+        }
     }
 }

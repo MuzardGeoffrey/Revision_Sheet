@@ -1,8 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using RevisionSheet.DataAccess.Utils;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RevisionSheet.DataAccess.DataAccess
 {
@@ -27,7 +25,6 @@ namespace RevisionSheet.DataAccess.DataAccess
             {
                 Console.WriteLine(e.Message);
             }
-           
         }
     }
 }

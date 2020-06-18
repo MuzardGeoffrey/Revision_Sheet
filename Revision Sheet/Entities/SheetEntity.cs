@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace RevisionSheet.DataAccess.Entities
+﻿namespace RevisionSheet.DataAccess.Entities
 {
-        
     public class SheetEntity
     {
         public int Id { get; set; }
@@ -28,6 +25,5 @@ namespace RevisionSheet.DataAccess.Entities
             this.Content = content;
             this.ChapterId = chapterId;
         }
-
     }
 }

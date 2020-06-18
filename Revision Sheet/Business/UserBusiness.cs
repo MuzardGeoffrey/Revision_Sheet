@@ -3,23 +3,21 @@ using Revision_Sheet.IBusiness;
 using RevisionSheet.DataAccess.DataAccess;
 using RevisionSheet.DataAccess.Entities;
 using RevisionSheet.DataAccess.IDataAccess;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Revision_Sheet.Business
 {
     public class UserBusiness : IUserBusiness
     {
         private IUserDataAccess userDataAccess = new UserDataAccess();
+
         public User Create(User user)
         {
             if (user != null)
             {
-                UserEntity userEntities = new UserEntity(user);
-                User userReturn = new User( userDataAccess.Create(userEntities));
-                return userReturn;
+                UserEntity userEntity = new UserEntity();
+                userEntity = userDataAccess.Create(user.UserEntityConvertion());
+                return userEntity.UserConvertion();
             }
             return null;
         }
@@ -36,8 +34,7 @@ namespace Revision_Sheet.Business
 
             foreach (var userData in userDataAccess.FindAllUser())
             {
-                User user = new User(userData);
-                users.Add(user);
+                users.Add(userData.UserConvertion());
             }
 
             return users;
@@ -45,15 +42,14 @@ namespace Revision_Sheet.Business
 
         public User FindById(int id)
         {
-            User user = new User(userDataAccess.FindById(id));
-            return user;
+            return userDataAccess.FindById(id).UserConvertion();
         }
 
-        public User Update(int id, User obj)
+        public User Update(int id, User user)
         {
-            UserEntity userEntities = new UserEntity(obj);
-            User user = new User(userDataAccess.Update(id, userEntities));
-            return user;
+            UserEntity userEntities = new UserEntity();
+            userEntities = userDataAccess.Update(id, user.UserEntityConvertion());
+            return userEntities.UserConvertion();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace RevisionSheet.DataAccess.DataAccess
 
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO " + Constants.USER_TABLE_NAME + " (" + Constants.USER_COLUMN_NAME_FIRST_NAME+ ", " + Constants.USER_COLUMN_NAME_LAST_NAME + ", " + Constants.USER_COLUMN_NAME_LOGIN + ", " + Constants.USER_COLUMN_NAME_PASSWORD + ") VALUES (@firstName, @lastName, @login, @password)";
+                cmd.CommandText = "INSERT INTO " + Constants.USER_TABLE_NAME + " (" + Constants.USER_COLUMN_NAME_FIRST_NAME + ", " + Constants.USER_COLUMN_NAME_LAST_NAME + ", " + Constants.USER_COLUMN_NAME_LOGIN + ", " + Constants.USER_COLUMN_NAME_PASSWORD + ") VALUES (@firstName, @lastName, @login, @password)";
 
                 cmd.Parameters.AddWithValue("@firstName", obj.FirstName);
                 cmd.Parameters.AddWithValue("@lastName", obj.LastName);
@@ -48,13 +48,11 @@ namespace RevisionSheet.DataAccess.DataAccess
 
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-                cmd.CommandText = "DELETE FROM " + Constants.USER_TABLE_NAME +" WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
+                cmd.CommandText = "DELETE FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
                 id = cmd.ExecuteNonQuery();
-                
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -88,12 +86,10 @@ namespace RevisionSheet.DataAccess.DataAccess
                         UserEntity userEntities = new UserEntity();
                         try
                         {
-                            
                             userEntities.Id = Int32.Parse(String.Format("{0}", reader[0]));
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         userEntities.FirstName = String.Format("{0}", reader[1]);
@@ -106,7 +102,6 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -124,13 +119,10 @@ namespace RevisionSheet.DataAccess.DataAccess
             {
                 this.connection.Open();
 
-
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-             
-                cmd.CommandText = "SELECT * FROM "+ Constants.USER_TABLE_NAME +" WHERE "+ Constants.USER_COLUMN_NAME_ID + " = " + id;
+                cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
 
-                
                 IDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -143,7 +135,6 @@ namespace RevisionSheet.DataAccess.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         user.FirstName = String.Format("{0}", reader[1]);
@@ -154,10 +145,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
-            finally 
+            finally
             {
                 this.connection.Close();
             }
@@ -181,7 +171,6 @@ namespace RevisionSheet.DataAccess.DataAccess
                 // Exécution de la commande SQL
                 IDataReader reader = cmd.ExecuteReader();
 
-
                 while (reader.Read())
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
@@ -192,7 +181,6 @@ namespace RevisionSheet.DataAccess.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         user.FirstName = String.Format("{0}", reader[1]);
@@ -200,7 +188,7 @@ namespace RevisionSheet.DataAccess.DataAccess
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

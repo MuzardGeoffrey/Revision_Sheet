@@ -6,8 +6,6 @@ using RevisionSheet.DataAccess.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Revision_Sheet.DataAccess
 {
@@ -27,9 +25,8 @@ namespace Revision_Sheet.DataAccess
                 cmd.Parameters.AddWithValue("@user_id", obj.UserId);
 
                 cmd.ExecuteNonQuery();
-
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -51,13 +48,11 @@ namespace Revision_Sheet.DataAccess
 
                 cmd.CommandText = "DELETE FROM " + Constants.COURSE_TABLE_NAME + " WHERE " + Constants.COURSE_COLUMN_NAME_ID + " = " + id;
                 id = 1;
-               Object test = cmd.ExecuteScalar();
+                Object test = cmd.ExecuteScalar();
                 Console.WriteLine(test);
-
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -80,12 +75,9 @@ namespace Revision_Sheet.DataAccess
             {
                 this.connection.Open();
 
-
                 MySqlCommand cmd = this.connection.CreateCommand();
 
-
                 cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
-
 
                 IDataReader reader = cmd.ExecuteReader();
 
@@ -100,7 +92,6 @@ namespace Revision_Sheet.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         course.Name = String.Format("{0}", reader[1]);
@@ -109,7 +100,6 @@ namespace Revision_Sheet.DataAccess
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             finally
@@ -137,7 +127,6 @@ namespace Revision_Sheet.DataAccess
                 // Exécution de la commande SQL
                 IDataReader reader = cmd.ExecuteReader();
 
-
                 while (reader.Read())
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
@@ -149,7 +138,6 @@ namespace Revision_Sheet.DataAccess
                         }
                         catch (Exception e)
                         {
-
                             Console.WriteLine(e.Message);
                         }
                         course.Name = String.Format("{0}", reader[1]);

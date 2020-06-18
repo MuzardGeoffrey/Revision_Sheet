@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Revision_Sheet.Business;
 using Revision_Sheet.BusinessObject;
 using Revision_Sheet.IBusiness;
@@ -12,7 +11,7 @@ namespace Revision_Sheet.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        IUserBusiness userBusiness = new UserBusiness();
+        private IUserBusiness userBusiness = new UserBusiness();
 
         // GET: api/User/5
         [HttpGet("{id:int}")]
@@ -27,7 +26,6 @@ namespace Revision_Sheet.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] User user)
         {
-            
             if (user.FirstName != null && user.LastName != null && user.Login != null && user.Password != null)
             {
                 userBusiness.Create(user);
@@ -42,7 +40,7 @@ namespace Revision_Sheet.Controllers
         // PUT: api/User/5
         [HttpPut("{id:int}")]
         public void Put(int id, [FromBody] User user)
-        { 
+        {
             userBusiness.Update(id, user);
         }
 

@@ -1,5 +1,4 @@
-﻿using RevisionSheet.DataAccess.DataAccess;
-using RevisionSheet.DataAccess.Entities;
+﻿using RevisionSheet.DataAccess.Entities;
 using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.IDataAccess

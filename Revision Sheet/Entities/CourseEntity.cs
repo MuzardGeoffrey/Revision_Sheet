@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RevisionSheet.DataAccess.Entities
+﻿namespace RevisionSheet.DataAccess.Entities
 {
     public class CourseEntity
     {
