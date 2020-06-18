@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Revision_Sheet.Business;
 using Revision_Sheet.BusinessObject;
 using Revision_Sheet.IBusiness;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace Revision_Sheet.Controllers
 {
@@ -18,15 +14,8 @@ namespace Revision_Sheet.Controllers
     {
         IUserBusiness userBusiness = new UserBusiness();
 
-        // GET: api/User
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/User/5
-        [HttpGet("{id:int}", Name = "Get")]
+        [HttpGet("{id:int}")]
         public string Get(int id)
         {
             User user = new User(userBusiness.FindById(id));
@@ -36,34 +25,29 @@ namespace Revision_Sheet.Controllers
 
         // POST: api/User
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] User user)
         {
-            User user = new User();
-            String json = JsonSerializer.Serialize(value);
-            user = JsonSerializer.Deserialize<User>(json);
-            userBusiness.Create(user);
+            
+            if (user.FirstName != null && user.LastName != null && user.Login != null && user.Password != null)
+            {
+                userBusiness.Create(user);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // PUT: api/User/5
         [HttpPut("{id:int}")]
-        public void Put(int id, [FromBody] string value)
-        {
-            User user = new User();
-            try
-            {
-                user = JsonSerializer.Deserialize<User>(value);
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e.Message);
-            }
-           
+        public void Put(int id, [FromBody] User user)
+        { 
             userBusiness.Update(id, user);
         }
 
         // DELETE: api/user/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public void Delete(int id)
         {
             userBusiness.Delete(id);
