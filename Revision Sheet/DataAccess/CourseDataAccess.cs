@@ -13,7 +13,7 @@ namespace Revision_Sheet.DataAccess
 {
     public class CourseDataAccess : DbConnexion, ICourseDataAccess
     {
-        public CourseEntities Create(CourseEntities obj)
+        public CourseEntity Create(CourseEntity obj)
         {
             try
             {
@@ -68,14 +68,14 @@ namespace Revision_Sheet.DataAccess
             return id;
         }
 
-        public List<CourseEntities> FindAllCourseByUser(int courseId)
+        public List<CourseEntity> FindAllCourseByUser(int courseId)
         {
             throw new NotImplementedException();
         }
 
-        public CourseEntities FindById(int id)
+        public CourseEntity FindById(int id)
         {
-            CourseEntities course = new CourseEntities();
+            CourseEntity course = new CourseEntity();
             try
             {
                 this.connection.Open();
@@ -119,9 +119,9 @@ namespace Revision_Sheet.DataAccess
             return course;
         }
 
-        public CourseEntities Update(int id, CourseEntities obj)
+        public CourseEntity Update(int id, CourseEntity obj)
         {
-            CourseEntities course = new CourseEntities();
+            CourseEntity course = new CourseEntity();
             try
             {
                 // Ouverture de la connexion SQL

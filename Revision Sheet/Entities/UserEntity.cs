@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.Entities
 {
-    public class UserEntities
+    public class UserEntity
     {
         public string FirstName { get; set; }
         public int Id { get; set; }
@@ -12,11 +12,11 @@ namespace RevisionSheet.DataAccess.Entities
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public UserEntities()
+        public UserEntity()
         {
         }
 
-        public UserEntities(string firstName, string lastName, string login, string password)
+        public UserEntity(string firstName, string lastName, string login, string password)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -24,7 +24,7 @@ namespace RevisionSheet.DataAccess.Entities
             this.Password = password;
         }
 
-        public UserEntities(int id, string firstName, string lastName, string login, string password)
+        public UserEntity(int id, string firstName, string lastName, string login, string password)
         {
             this.Id = id;
             this.FirstName = firstName;
@@ -33,7 +33,7 @@ namespace RevisionSheet.DataAccess.Entities
             this.Password = password;
         }
 
-        public UserEntities(User user)
+        public UserEntity(User user)
         {
             this.Id = user.Id;
             this.FirstName = user.FirstName;

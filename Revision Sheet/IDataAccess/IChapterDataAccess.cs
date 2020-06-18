@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RevisionSheet.DataAccess.IDataAccess
 {
-    interface IChapterDataAccess : IBaseDataAccess<ChapterEntities>
+    interface IChapterDataAccess : IBaseDataAccess<ChapterEntity>
     {
-        public List<SheetEntities> FindAllChapterByCourse(int ChapterId);
+        public List<SheetEntity> FindAllChapterByCourse(int ChapterId);
     }
 }

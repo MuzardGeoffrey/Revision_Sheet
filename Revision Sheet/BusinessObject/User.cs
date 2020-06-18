@@ -40,7 +40,7 @@ namespace Revision_Sheet.BusinessObject
             this.Password = password;
         }
 
-        public User(UserEntities userEntities)
+        public User(UserEntity userEntities)
         {
             this.Id = userEntities.Id;
             this.FirstName = userEntities.FirstName;

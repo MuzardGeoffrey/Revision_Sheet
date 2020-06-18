@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.IDataAccess
 {
-    internal interface IUserDataAccess : IBaseDataAccess<UserEntities>
+    internal interface IUserDataAccess : IBaseDataAccess<UserEntity>
     {
-        public List<UserEntities> FindAllUser();
+        public List<UserEntity> FindAllUser();
     }
 }

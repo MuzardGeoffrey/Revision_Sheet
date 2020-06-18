@@ -17,7 +17,7 @@ namespace Revision_Sheet.Business
         {
             if (user != null)
             {
-                UserEntities userEntities = new UserEntities(user);
+                UserEntity userEntities = new UserEntity(user);
                 User userReturn = new User( userDataAccess.Create(userEntities));
                 return userReturn;
             }
@@ -51,7 +51,7 @@ namespace Revision_Sheet.Business
 
         public User Update(int id, User obj)
         {
-            UserEntities userEntities = new UserEntities(obj);
+            UserEntity userEntities = new UserEntity(obj);
             User user = new User(userDataAccess.Update(id, userEntities));
             return user;
         }

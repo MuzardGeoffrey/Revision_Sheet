@@ -3,25 +3,25 @@
 namespace RevisionSheet.DataAccess.Entities
 {
         
-    public class SheetEntities
+    public class SheetEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public int ChapterId { get; set; }
 
-        public SheetEntities()
+        public SheetEntity()
         {
         }
 
-        public SheetEntities(string title, string content, int chapterId)
+        public SheetEntity(string title, string content, int chapterId)
         {
             this.Title = title;
             this.Content = content;
             this.ChapterId = chapterId;
         }
 
-        public SheetEntities(int id, string title, string content, int chapterId)
+        public SheetEntity(int id, string title, string content, int chapterId)
         {
             this.Id = id;
             this.Title = title;

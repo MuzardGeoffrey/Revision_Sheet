@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RevisionSheet.DataAccess.IDataAccess
 {
-    interface ICourseDataAccess : IBaseDataAccess<CourseEntities>
+    interface ICourseDataAccess : IBaseDataAccess<CourseEntity>
     {
-        public List<CourseEntities> FindAllCourseByUser(int courseId); 
+        public List<CourseEntity> FindAllCourseByUser(int courseId); 
     }
 }

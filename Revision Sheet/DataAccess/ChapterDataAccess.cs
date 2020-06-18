@@ -10,7 +10,7 @@ namespace Revision_Sheet.DataAccess
 {
     public class ChapterDataAccess : DbConnexion, IChapterDataAccess
     {
-        public ChapterEntities Create(ChapterEntities obj)
+        public ChapterEntity Create(ChapterEntity obj)
         {
             throw new NotImplementedException();
         }
@@ -20,17 +20,17 @@ namespace Revision_Sheet.DataAccess
             throw new NotImplementedException();
         }
 
-        public List<SheetEntities> FindAllChapterByCourse(int ChapterId)
+        public List<SheetEntity> FindAllChapterByCourse(int ChapterId)
         {
             throw new NotImplementedException();
         }
 
-        public ChapterEntities FindById(int id)
+        public ChapterEntity FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public ChapterEntities Update(int id, ChapterEntities obj)
+        public ChapterEntity Update(int id, ChapterEntity obj)
         {
             throw new NotImplementedException();
         }

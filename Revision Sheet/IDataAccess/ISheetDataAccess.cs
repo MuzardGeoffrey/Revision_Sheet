@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.IDataAccess
 {
-    internal interface ISheetDataAccess : IBaseDataAccess<SheetEntities>
+    internal interface ISheetDataAccess : IBaseDataAccess<SheetEntity>
     {
-        public List<SheetEntities> FindAllSheetByChapter();
+        public List<SheetEntity> FindAllSheetByChapter();
     }
 }

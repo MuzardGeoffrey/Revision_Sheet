@@ -10,7 +10,7 @@ namespace RevisionSheet.DataAccess.DataAccess
 {
     public class UserDataAccess : DbConnexion, IUserDataAccess
     {
-        public UserEntities Create(UserEntities obj)
+        public UserEntity Create(UserEntity obj)
         {
             try
             {
@@ -67,9 +67,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             //TODO : retourner l'id de l'element supprimer ou un bool
         }
 
-        public List<UserEntities> FindAllUser()
+        public List<UserEntity> FindAllUser()
         {
-            List<UserEntities> usersEntities = new List<UserEntities>();
+            List<UserEntity> usersEntities = new List<UserEntity>();
 
             try
             {
@@ -85,7 +85,7 @@ namespace RevisionSheet.DataAccess.DataAccess
                 {
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        UserEntities userEntities = new UserEntities();
+                        UserEntity userEntities = new UserEntity();
                         try
                         {
                             
@@ -117,9 +117,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             return usersEntities;
         }
 
-        public UserEntities FindById(int id)
+        public UserEntity FindById(int id)
         {
-            UserEntities user = new UserEntities();
+            UserEntity user = new UserEntity();
             try
             {
                 this.connection.Open();
@@ -164,9 +164,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             return user;
         }
 
-        public UserEntities Update(int id, UserEntities obj)
+        public UserEntity Update(int id, UserEntity obj)
         {
-            UserEntities user = new UserEntities();
+            UserEntity user = new UserEntity();
             try
             {
                 this.connection.Open();

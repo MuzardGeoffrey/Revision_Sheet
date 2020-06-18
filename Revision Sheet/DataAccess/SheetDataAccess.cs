@@ -13,7 +13,7 @@ namespace Revision_Sheet.DataAccess
 {
     public class SheetDataAccess : DbConnexion, ISheetDataAccess
     {
-        public SheetEntities Create(SheetEntities obj)
+        public SheetEntity Create(SheetEntity obj)
         {
             try
             {
@@ -65,9 +65,9 @@ namespace Revision_Sheet.DataAccess
             return id;
         }
 
-        public List<SheetEntities> FindAllSheetByChapter(int chapterId)
+        public List<SheetEntity> FindAllSheetByChapter(int chapterId)
         {
-            List<SheetEntities> sheetEntities = new List<SheetEntities>();
+            List<SheetEntity> sheetEntities = new List<SheetEntity>();
             try
             {
                 this.connection.Open();
@@ -80,7 +80,7 @@ namespace Revision_Sheet.DataAccess
 
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                   SheetEntities sheet = new SheetEntities();
+                   SheetEntity sheet = new SheetEntity();
                     while (reader.Read())
                     {
                         for (int k = 0; k < reader.FieldCount; k++)
@@ -114,14 +114,14 @@ namespace Revision_Sheet.DataAccess
             return sheetEntities;
         }
 
-        public List<SheetEntities> FindAllSheetByChapter()
+        public List<SheetEntity> FindAllSheetByChapter()
         {
             throw new NotImplementedException();
         }
 
-        public SheetEntities FindById(int id)
+        public SheetEntity FindById(int id)
         {
-            SheetEntities user = new SheetEntities();
+            SheetEntity user = new SheetEntity();
             try
             {
                 this.connection.Open();
@@ -167,9 +167,9 @@ namespace Revision_Sheet.DataAccess
             return user;
         }
 
-        public SheetEntities Update(int id, SheetEntities obj)
+        public SheetEntity Update(int id, SheetEntity obj)
         {
-            SheetEntities sheet = new SheetEntities();
+            SheetEntity sheet = new SheetEntity();
 
             try
             {
