@@ -6,8 +6,9 @@ using System.Collections.Generic;
 
 namespace Revision_Sheet.DataAccess
 {
-    public class ChapterDataAccess : DbConnexion, IChapterDataAccess
+    public class ChapterDataAccess : IChapterDataAccess
     {
+        public DbConnexion db = new DbConnexion();
         public ChapterEntity Create(ChapterEntity obj)
         {
             throw new NotImplementedException();

@@ -9,8 +9,9 @@ using System.Data;
 
 namespace Revision_Sheet.DataAccess
 {
-    public class SheetDataAccess : DbConnexion, ISheetDataAccess
+    public class SheetDataAccess : ISheetDataAccess
     {
+        public DbConnexion db = new DbConnexion();
         public SheetEntity Create(SheetEntity obj)
         {
             try

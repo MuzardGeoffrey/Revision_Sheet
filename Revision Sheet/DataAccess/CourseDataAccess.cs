@@ -9,15 +9,16 @@ using System.Data;
 
 namespace Revision_Sheet.DataAccess
 {
-    public class CourseDataAccess : DbConnexion, ICourseDataAccess
+    public class CourseDataAccess : ICourseDataAccess
     {
+        public DbConnexion db = new DbConnexion();
         public CourseEntity Create(CourseEntity obj)
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO" + Constants.COURSE_TABLE_NAME + " (" + Constants.COURSE_COLUMN_NAME_NAME + ", " + Constants.COURSE_COLUMN_NAME_USER_ID + ") VALUES (@name, @user_id)";
 
@@ -32,7 +33,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return obj;
             //TODO : retourner l'objet de la bdd ou l'id
@@ -42,9 +43,9 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM " + Constants.COURSE_TABLE_NAME + " WHERE " + Constants.COURSE_COLUMN_NAME_ID + " = " + id;
                 id = 1;
@@ -57,7 +58,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return id;
@@ -73,9 +74,9 @@ namespace Revision_Sheet.DataAccess
             CourseEntity course = new CourseEntity();
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
 
@@ -104,7 +105,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return course;
         }
@@ -115,10 +116,10 @@ namespace Revision_Sheet.DataAccess
             try
             {
                 // Ouverture de la connexion SQL
-                this.connection.Open();
+                db.connection.Open();
 
                 // Création d'une commande SQL en fonction de l'objet connection
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 // Requête SQL
                 cmd.CommandText = "UPDATE " + Constants.USER_TABLE_NAME + " SET '" + Constants.USER_COLUMN_NAME_FIRST_NAME + "' = " + obj.Name + ", '" + Constants.USER_COLUMN_NAME_LAST_NAME + "' " + obj.UserId +
@@ -150,7 +151,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return course;

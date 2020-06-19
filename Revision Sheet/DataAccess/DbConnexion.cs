@@ -1,18 +1,22 @@
 ﻿using MySql.Data.MySqlClient;
 using RevisionSheet.DataAccess.Utils;
 using System;
+using System.Data;
 
 namespace RevisionSheet.DataAccess.DataAccess
 {
     public class DbConnexion
     {
-        protected MySqlConnection connection;
+        public MySqlConnection connection;
 
         private string conf = "SERVER=" + Constants.IPSERVER + ";DATABASE=" + Constants.DATABASE_NAME + ";UID=" + Constants.DATABASE_USER + ";PASSWORD=" + Constants.PASSWORD;
 
-        protected DbConnexion()
+        public DbConnexion()
         {
-            InitConnexion();
+            if (connection.State == ConnectionState.Open)
+            {
+                InitConnexion();
+            }
         }
 
         private void InitConnexion()
@@ -20,6 +24,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             try
             {
                 this.connection = new MySqlConnection(conf);
+                this.connection.Open();
             }
             catch (Exception e)
             {

@@ -8,15 +8,16 @@ using System.Data;
 
 namespace RevisionSheet.DataAccess.DataAccess
 {
-    public class UserDataAccess : DbConnexion, IUserDataAccess
+    public class UserDataAccess : IUserDataAccess
     {
+        public DbConnexion db = new DbConnexion();
         public UserEntity Create(UserEntity obj)
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO " + Constants.USER_TABLE_NAME + " (" + Constants.USER_COLUMN_NAME_FIRST_NAME + ", " + Constants.USER_COLUMN_NAME_LAST_NAME + ", " + Constants.USER_COLUMN_NAME_LOGIN + ", " + Constants.USER_COLUMN_NAME_PASSWORD + ") VALUES (@firstName, @lastName, @login, @password)";
 
@@ -33,7 +34,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return obj;
 
@@ -44,9 +45,9 @@ namespace RevisionSheet.DataAccess.DataAccess
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
                 id = cmd.ExecuteNonQuery();
@@ -57,7 +58,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return id;
@@ -71,9 +72,9 @@ namespace RevisionSheet.DataAccess.DataAccess
 
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME;
 
@@ -106,7 +107,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return usersEntities;
@@ -117,9 +118,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             UserEntity user = new UserEntity();
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
 
@@ -149,7 +150,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return user;
         }
@@ -159,9 +160,9 @@ namespace RevisionSheet.DataAccess.DataAccess
             UserEntity user = new UserEntity();
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "UPDATE " + Constants.USER_TABLE_NAME + " SET '" + Constants.USER_COLUMN_NAME_FIRST_NAME + "' = " + obj.FirstName + ", '" + Constants.USER_COLUMN_NAME_LAST_NAME + "' " + obj.LastName + ", " +
                   Constants.USER_COLUMN_NAME_LOGIN + "' " + obj.Login + ", " +
@@ -194,7 +195,7 @@ namespace RevisionSheet.DataAccess.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return user;
