@@ -6,23 +6,23 @@ namespace RevisionSheet.DataAccess.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<SheetEntity> Sheets { get; set; }
+        public int CourseId { get; set; }
 
         public ChapterEntity()
         {
         }
 
-        public ChapterEntity(string name, List<SheetEntity> sheets)
+        public ChapterEntity(string name, int courseId)
         {
             this.Name = name;
-            this.Sheets = sheets;
+            this.CourseId = courseId;
         }
 
-        public ChapterEntity(int id, string name, List<SheetEntity> sheets)
+        public ChapterEntity(int id, string name, int courseId)
         {
             this.Id = id;
             this.Name = name;
-            this.Sheets = sheets;
+            this.CourseId = courseId;
         }
     }
 }

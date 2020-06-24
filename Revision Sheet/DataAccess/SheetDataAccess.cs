@@ -16,9 +16,9 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO " + Constants.SHEET_TABLE_NAME + " (" + Constants.SHEET_COLUMN_NAME_TITLE + ", " + Constants.SHEET_COLUMN_NAME_CONTENT + ", " + Constants.SHEET_COLUMN_NAME_CHAPTER_ID + ") VALUES (@title, @content, @chapter_id)";
 
@@ -34,7 +34,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return obj;
         }
@@ -43,9 +43,9 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
                 id = cmd.ExecuteNonQuery();
@@ -56,7 +56,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
 
             return id;
@@ -67,9 +67,9 @@ namespace Revision_Sheet.DataAccess
             List<SheetEntity> sheetEntities = new List<SheetEntity>();
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_CHAPTER_ID + " = " + chapterId;
 
@@ -104,7 +104,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return sheetEntities;
         }
@@ -119,9 +119,9 @@ namespace Revision_Sheet.DataAccess
             SheetEntity user = new SheetEntity();
             try
             {
-                this.connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
 
@@ -151,7 +151,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                this.connection.Close();
+                db.connection.Close();
             }
             return user;
         }
@@ -162,9 +162,9 @@ namespace Revision_Sheet.DataAccess
 
             try
             {
-                connection.Open();
+                db.connection.Open();
 
-                MySqlCommand cmd = this.connection.CreateCommand();
+                MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "UPDATE " + Constants.SHEET_TABLE_NAME + " SET '" + Constants.SHEET_COLUMN_NAME_TITLE + "' = " + obj.Title + ", '" + Constants.SHEET_COLUMN_NAME_CONTENT + "' " + obj.Content + ", " +
                   Constants.SHEET_COLUMN_NAME_CHAPTER_ID + "' " + obj.ChapterId +
@@ -196,7 +196,7 @@ namespace Revision_Sheet.DataAccess
             }
             finally
             {
-                connection.Close();
+                db.connection.Close();
             }
 
             return sheet;
