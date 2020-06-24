@@ -65,7 +65,47 @@ namespace Revision_Sheet.DataAccess
 
         public List<ChapterEntity> FindAllChapterByCourse(int CourseId)
         {
-            throw new NotImplementedException();
+            List<ChapterEntity> chapterEntities = new List<ChapterEntity>();
+
+            try
+            {
+                db.connection.Open();
+
+                MySqlCommand cmd = db.connection.CreateCommand();
+
+                cmd.CommandText = $"SELECT * FROM {Constants.CHAPTER_TABLE_NAME} WHERE {Constants.CHAPTER_COLUMN_NAME_COURSE_ID} = {CourseId}";
+
+                IDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        ChapterEntity chapterEntity = new ChapterEntity();
+                        try
+                        {
+                            chapterEntity.Id = Int32.Parse(String.Format("{0}", reader[0]));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        chapterEntity.Name = String.Format("{0}", reader[1]);
+
+                        chapterEntities.Add(chapterEntity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                db.connection.Close();
+            }
+
+            return chapterEntities;
         }
 
         public ChapterEntity FindById(int id)

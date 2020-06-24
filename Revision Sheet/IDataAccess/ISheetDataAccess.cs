@@ -5,6 +5,6 @@ namespace RevisionSheet.DataAccess.IDataAccess
 {
     internal interface ISheetDataAccess : IBaseDataAccess<SheetEntity>
     {
-        public List<SheetEntity> FindAllSheetByChapter();
+        public List<SheetEntity> FindAllSheetByChapter(int chapterId);
     }
 }

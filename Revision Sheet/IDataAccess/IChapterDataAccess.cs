@@ -5,6 +5,6 @@ namespace RevisionSheet.DataAccess.IDataAccess
 {
     internal interface IChapterDataAccess : IBaseDataAccess<ChapterEntity>
     {
-        public List<SheetEntity> FindAllChapterByCourse(int ChapterId);
+        public List<ChapterEntity> FindAllChapterByCourse(int courseId);
     }
 }

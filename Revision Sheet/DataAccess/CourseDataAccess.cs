@@ -64,9 +64,49 @@ namespace Revision_Sheet.DataAccess
             return id;
         }
 
-        public List<CourseEntity> FindAllCourseByUser(int courseId)
+        public List<CourseEntity> FindAllCourseByUser(int userId)
         {
-            throw new NotImplementedException();
+            List<CourseEntity> CourseEntities = new List<CourseEntity>();
+
+            try
+            {
+                db.connection.Open();
+
+                MySqlCommand cmd = db.connection.CreateCommand();
+
+                cmd.CommandText = $"SELECT * FROM {Constants.CHAPTER_TABLE_NAME} WHERE {Constants.COURSE_COLUMN_NAME_USER_ID} = {userId}";
+
+                IDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        CourseEntity courseEntity = new CourseEntity();
+                        try
+                        {
+                            courseEntity.Id = Int32.Parse(String.Format("{0}", reader[0]));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                        courseEntity.Name = String.Format("{0}", reader[1]);
+
+                        CourseEntities.Add(courseEntity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                db.connection.Close();
+            }
+
+            return CourseEntities;
         }
 
         public CourseEntity FindById(int id)
