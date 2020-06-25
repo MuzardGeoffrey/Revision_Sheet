@@ -24,7 +24,7 @@ namespace Revision_Sheet.Controllers
 
         // POST: api/User
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] User user)
+        public IActionResult Post([FromBody] User user)
         {
             if (user.FirstName != null && user.LastName != null && user.Login != null && user.Password != null)
             {

@@ -16,7 +16,7 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                db.connection.Open();
+                
 
                 MySqlCommand cmd = db.connection.CreateCommand();
 
@@ -43,8 +43,6 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM " + Constants.COURSE_TABLE_NAME + " WHERE " + Constants.COURSE_COLUMN_NAME_ID + " = " + id;
@@ -70,8 +68,6 @@ namespace Revision_Sheet.DataAccess
 
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = $"SELECT * FROM {Constants.CHAPTER_TABLE_NAME} WHERE {Constants.COURSE_COLUMN_NAME_USER_ID} = {userId}";
@@ -83,15 +79,9 @@ namespace Revision_Sheet.DataAccess
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
                         CourseEntity courseEntity = new CourseEntity();
-                        try
-                        {
-                            courseEntity.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        courseEntity.Name = String.Format("{0}", reader[1]);
+
+                        courseEntity.Id = reader.GetInt32(0);
+                        courseEntity.Name = reader.GetString(1);
 
                         CourseEntities.Add(courseEntity);
                     }
@@ -114,8 +104,6 @@ namespace Revision_Sheet.DataAccess
             CourseEntity course = new CourseEntity();
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
@@ -124,19 +112,9 @@ namespace Revision_Sheet.DataAccess
 
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        try
-                        {
-                            course.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                            course.UserId = Int32.Parse(String.Format("{0}", reader[2]));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        course.Name = String.Format("{0}", reader[1]);
-                    }
+                    course.Id = reader.GetInt32(0);
+                    course.UserId = reader.GetInt32(2);
+                    course.Name = reader.GetString(1);
                 }
             }
             catch (Exception e)
@@ -156,7 +134,7 @@ namespace Revision_Sheet.DataAccess
             try
             {
                 // Ouverture de la connexion SQL
-                db.connection.Open();
+                
 
                 // Création d'une commande SQL en fonction de l'objet connection
                 MySqlCommand cmd = db.connection.CreateCommand();
@@ -170,19 +148,10 @@ namespace Revision_Sheet.DataAccess
 
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        try
-                        {
-                            course.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                            course.UserId = Int32.Parse(String.Format("{0}", reader[2]));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        course.Name = String.Format("{0}", reader[1]);
-                    }
+                    course.Id = reader.GetInt32(0);
+                    course.UserId = reader.GetInt32(2);
+                    course.Name = reader.GetString(1);
+                    
                 }
             }
             catch (Exception e)

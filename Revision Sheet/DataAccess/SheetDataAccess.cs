@@ -16,8 +16,6 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "INSERT INTO " + Constants.SHEET_TABLE_NAME + " (" + Constants.SHEET_COLUMN_NAME_TITLE + ", " + Constants.SHEET_COLUMN_NAME_CONTENT + ", " + Constants.SHEET_COLUMN_NAME_CHAPTER_ID + ") VALUES (@title, @content, @chapter_id)";
@@ -43,8 +41,6 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "DELETE FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
@@ -67,7 +63,7 @@ namespace Revision_Sheet.DataAccess
             List<SheetEntity> sheetEntities = new List<SheetEntity>();
             try
             {
-                db.connection.Open();
+                
 
                 MySqlCommand cmd = db.connection.CreateCommand();
 
@@ -80,20 +76,10 @@ namespace Revision_Sheet.DataAccess
                     SheetEntity sheet = new SheetEntity();
                     while (reader.Read())
                     {
-                        for (int k = 0; k < reader.FieldCount; k++)
-                        {
-                            try
-                            {
-                                sheet.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                                sheet.ChapterId = Int32.Parse(String.Format("{0}", reader[3]));
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                            }
-                            sheet.Title = String.Format("{0}", reader[1]);
-                            sheet.Content = String.Format("{0}", reader[2]);
-                        }
+                        sheet.Id = reader.GetInt32(0);
+                        sheet.ChapterId = reader.GetInt32(3);
+                        sheet.Title = reader.GetString(1);
+                        sheet.Content = reader.GetString(2);
                     }
                     sheetEntities.Add(sheet);
                 }
@@ -114,7 +100,7 @@ namespace Revision_Sheet.DataAccess
             SheetEntity user = new SheetEntity();
             try
             {
-                db.connection.Open();
+                
 
                 MySqlCommand cmd = db.connection.CreateCommand();
 
@@ -124,20 +110,10 @@ namespace Revision_Sheet.DataAccess
 
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        try
-                        {
-                            user.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                            user.ChapterId = Int32.Parse(String.Format("{0}", reader[3]));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        user.Title = String.Format("{0}", reader[1]);
-                        user.Content = String.Format("{0}", reader[2]);
-                    }
+                    user.Id = reader.GetInt32(0);
+                    user.ChapterId = reader.GetInt32(3);
+                    user.Title = reader.GetString(1);
+                    user.Content = reader.GetString(2);
                 }
             }
             catch (Exception e)
@@ -157,8 +133,6 @@ namespace Revision_Sheet.DataAccess
 
             try
             {
-                db.connection.Open();
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "UPDATE " + Constants.SHEET_TABLE_NAME + " SET '" + Constants.SHEET_COLUMN_NAME_TITLE + "' = " + obj.Title + ", '" + Constants.SHEET_COLUMN_NAME_CONTENT + "' " + obj.Content + ", " +
@@ -169,20 +143,10 @@ namespace Revision_Sheet.DataAccess
 
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        try
-                        {
-                            sheet.Id = Int32.Parse(String.Format("{0}", reader[0]));
-                            sheet.ChapterId = Int32.Parse(String.Format("{0}", reader[3]));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                        sheet.Title = String.Format("{0}", reader[1]);
-                        sheet.Content = String.Format("{0}", reader[2]);
-                    }
+                    sheet.Id = reader.GetInt32(0);
+                    sheet.ChapterId = reader.GetInt32(3);
+                    sheet.Title = reader.GetString(1);
+                    sheet.Content = reader.GetString(2);
                 }
             }
             catch (Exception e)
@@ -193,7 +157,6 @@ namespace Revision_Sheet.DataAccess
             {
                 db.connection.Close();
             }
-
             return sheet;
         }
     }

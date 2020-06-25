@@ -1,5 +1,8 @@
 ﻿using Revision_Sheet.BusinessObject;
+using Revision_Sheet.DataAccess;
 using Revision_Sheet.IBusiness;
+using RevisionSheet.DataAccess.Entities;
+using RevisionSheet.DataAccess.IDataAccess;
 using System;
 using System.Collections.Generic;
 
@@ -7,9 +10,16 @@ namespace Revision_Sheet.Business
 {
     public class SheetBusiness : ISheetBusiness
     {
-        public Sheet Create(Sheet obj)
+        ISheetDataAccess sheetDataAccess = new SheetDataAccess();
+        public Sheet Create(Sheet sheet)
         {
-            throw new NotImplementedException();
+            if (sheet != null)
+            {
+                SheetEntity sheetEntity = new SheetEntity();
+                sheetEntity = sheetDataAccess.Create(sheet.sheetEntityConversion());
+                return null;
+            }
+            return null;
         }
 
         public bool Delete(int id)

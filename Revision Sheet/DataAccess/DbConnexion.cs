@@ -13,7 +13,8 @@ namespace RevisionSheet.DataAccess.DataAccess
 
         public DbConnexion()
         {
-            if (connection.State == ConnectionState.Open)
+            
+            if (connection == null)
             {
                 InitConnexion();
             }
