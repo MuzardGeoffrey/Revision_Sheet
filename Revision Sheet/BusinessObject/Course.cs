@@ -10,6 +10,7 @@ namespace Revision_Sheet.BusinessObject
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Chapter> ChapterList { get; set; }
+        public int UserId { get; set; }
 
         public Course()
         {
@@ -20,12 +21,27 @@ namespace Revision_Sheet.BusinessObject
             Name = name;
             ChapterList = chapterList;
         }
+        
+        public Course(string name, List<Chapter> chapterList, int userId)
+        {
+            Name = name;
+            ChapterList = chapterList;
+            UserId = userId;
+        }
 
         public Course(int id, string name, List<Chapter> chapterList)
         {
             Id = id;
             Name = name;
             ChapterList = chapterList;
+        }
+
+        public Course(int id, string name, List<Chapter> chapterList, int userId)
+        {
+            Id = id;
+            Name = name;
+            ChapterList = chapterList;
+            UserId = userId;
         }
 
         public CourseEntity CourseEntityConversion()
@@ -35,7 +51,7 @@ namespace Revision_Sheet.BusinessObject
             {
                 Id = this.Id,
                 Name = this.Name,
-                UserId = courseDataAccess.FindById(this.Id).UserId
+                UserId = this.UserId
             };
         }
     }

@@ -28,7 +28,7 @@ namespace Revision_Sheet.BusinessObject
             Content = content;
         }
 
-        public SheetEntity sheetEntityConversion()
+        public SheetEntity sheetEntityConversion(int chapterId)
         {
             ISheetDataAccess sheetDataAccess = new SheetDataAccess();
             return new SheetEntity
@@ -36,7 +36,7 @@ namespace Revision_Sheet.BusinessObject
                 Id = this.Id,
                 Title = this.Title,
                 Content = this.Content,
-                ChapterId = sheetDataAccess.FindById(this.Id).ChapterId
+                ChapterId = chapterId
             };
         }
     }

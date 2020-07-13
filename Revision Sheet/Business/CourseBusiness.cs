@@ -1,5 +1,8 @@
 ﻿using Revision_Sheet.BusinessObject;
+using Revision_Sheet.DataAccess;
 using Revision_Sheet.IBusiness;
+using RevisionSheet.DataAccess.Entities;
+using RevisionSheet.DataAccess.IDataAccess;
 using System;
 using System.Collections.Generic;
 
@@ -7,9 +10,13 @@ namespace Revision_Sheet.Business
 {
     public class CourseBusiness : ICourseBusiness
     {
-        public Course Create(Course obj)
+        ICourseDataAccess courseDataAcces = new CourseDataAccess();
+
+        public Course Create(Course course)
         {
-            throw new NotImplementedException();
+            CourseEntity courseReturn = new CourseEntity();
+            courseReturn = courseDataAcces.Create(course.CourseEntityConversion());
+            return courseReturn.CourseConversion();
         }
 
         public bool Delete(int id)

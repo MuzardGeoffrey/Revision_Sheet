@@ -16,7 +16,7 @@ namespace Revision_Sheet.Business
             if (sheet != null)
             {
                 SheetEntity sheetEntity = new SheetEntity();
-                sheetEntity = sheetDataAccess.Create(sheet.sheetEntityConversion());
+                sheetEntity = sheetDataAccess.Create(sheet.sheetEntityConversion(1));
                 return null;
             }
             return null;

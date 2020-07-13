@@ -45,6 +45,15 @@ namespace Revision_Sheet.Business
             return userDataAccess.FindById(id).UserConvertion();
         }
 
+        public User Login(User user)
+        {
+            if (userDataAccess.Login(user.UserEntityConvertion()))
+            {
+                return user;
+            }
+            return null;
+        }
+
         public User Update(int id, User user)
         {
             UserEntity userEntities = new UserEntity();

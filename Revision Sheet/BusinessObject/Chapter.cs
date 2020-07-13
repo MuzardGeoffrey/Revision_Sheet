@@ -28,14 +28,14 @@ namespace Revision_Sheet.BusinessObject
             SheetList = sheetList;
         }
 
-        public ChapterEntity ChapterEntityConversion()
+        public ChapterEntity ChapterEntityConversion(int courseId)
         {
             IChapterDataAccess chapterDataAccess = new ChapterDataAccess();
             return new ChapterEntity
             {
                 Id = this.Id,
                 Name = this.Name,
-                CourseId = chapterDataAccess.FindById(this.Id).CourseId
+                CourseId = courseId
             };
         }
     }

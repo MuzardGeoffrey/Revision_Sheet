@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Revision_Sheet.BusinessObject;
 using RevisionSheet.DataAccess.DataAccess;
 using RevisionSheet.DataAccess.Entities;
 using RevisionSheet.DataAccess.IDataAccess;
@@ -16,11 +17,9 @@ namespace Revision_Sheet.DataAccess
         {
             try
             {
-                
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO" + Constants.COURSE_TABLE_NAME + " (" + Constants.COURSE_COLUMN_NAME_NAME + ", " + Constants.COURSE_COLUMN_NAME_USER_ID + ") VALUES (@name, @user_id)";
+                cmd.CommandText = $"INSERT INTO {Constants.COURSE_TABLE_NAME } ({Constants.COURSE_COLUMN_NAME_NAME}, {Constants.COURSE_COLUMN_NAME_USER_ID}) VALUES (@name, @user_id)";
 
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@user_id", obj.UserId);

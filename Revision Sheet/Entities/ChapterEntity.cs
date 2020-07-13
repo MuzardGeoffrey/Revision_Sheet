@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Revision_Sheet.BusinessObject;
+using Revision_Sheet.DataAccess;
+using RevisionSheet.DataAccess.IDataAccess;
+using System.Collections.Generic;
 
 namespace RevisionSheet.DataAccess.Entities
 {
@@ -23,6 +26,27 @@ namespace RevisionSheet.DataAccess.Entities
             this.Id = id;
             this.Name = name;
             this.CourseId = courseId;
+        }
+
+        public Chapter ChapterConversion()
+        {
+            ISheetDataAccess sheetDataAccess = new SheetDataAccess();
+            List<Sheet> sheets = new List<Sheet>();
+            List<SheetEntity> sheetEntities = new List<SheetEntity>();
+
+            sheetEntities = sheetDataAccess.FindAllSheetByChapter(this.Id);
+
+            foreach (var sheetEntity in sheetEntities)
+            {
+                sheets.Add(sheetEntity.SheetConversion());
+            }
+
+            return new Chapter
+            {
+                Id = this.Id,
+                Name = this.Name,
+                SheetList = sheets
+            };
         }
     }
 }

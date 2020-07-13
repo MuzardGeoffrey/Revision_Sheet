@@ -139,11 +139,11 @@ namespace RevisionSheet.DataAccess.DataAccess
             {
                 MySqlCommand cmd = db.connection.CreateCommand();
 
-                cmd.CommandText = $"SELECT {Constants.USER_COLUMN_NAME_LOGIN} FROM {Constants.USER_TABLE_NAME} WHERE {Constants.USER_COLUMN_NAME_LOGIN} = {userEntity.Login} && {Constants.USER_COLUMN_NAME_PASSWORD} = {userEntity.Password}";
+                cmd.CommandText = $"SELECT {Constants.USER_COLUMN_NAME_LOGIN} FROM {Constants.USER_TABLE_NAME} WHERE {Constants.USER_COLUMN_NAME_LOGIN} = '{userEntity.Login}' AND {Constants.USER_COLUMN_NAME_PASSWORD} = '{userEntity.Password}'";
 
                 IDataReader reader = cmd.ExecuteReader();
 
-                if (reader.FieldCount < 0)
+                if (reader.FieldCount > 0)
                 {
                     log = true;
                 }

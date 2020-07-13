@@ -18,7 +18,7 @@ namespace Revision_Sheet.DataAccess
             {
                 MySqlCommand cmd = db.connection.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO" + Constants.CHAPTER_TABLE_NAME + " (" + Constants.CHAPTER_COLUMN_NAME_NAME + ", " + Constants.CHAPTER_COLUMN_NAME_COURSE_ID + ") VALUES (@name, @user_id)";
+                cmd.CommandText = "INSERT INTO " + Constants.CHAPTER_TABLE_NAME + " (" + Constants.CHAPTER_COLUMN_NAME_NAME + ", " + Constants.CHAPTER_COLUMN_NAME_COURSE_ID + ") VALUES (@name, @user_id)";
 
                 cmd.Parameters.AddWithValue("@name", obj.Name);
                 cmd.Parameters.AddWithValue("@user_id", obj.CourseId);

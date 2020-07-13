@@ -63,8 +63,6 @@ namespace Revision_Sheet.DataAccess
             List<SheetEntity> sheetEntities = new List<SheetEntity>();
             try
             {
-                
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_CHAPTER_ID + " = " + chapterId;
@@ -100,8 +98,6 @@ namespace Revision_Sheet.DataAccess
             SheetEntity user = new SheetEntity();
             try
             {
-                
-
                 MySqlCommand cmd = db.connection.CreateCommand();
 
                 cmd.CommandText = "SELECT * FROM " + Constants.SHEET_TABLE_NAME + " WHERE " + Constants.SHEET_COLUMN_NAME_ID + " = " + id;
