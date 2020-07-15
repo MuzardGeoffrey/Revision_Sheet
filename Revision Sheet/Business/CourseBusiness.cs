@@ -21,22 +21,31 @@ namespace Revision_Sheet.Business
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            courseDataAcces.Delete(id);
+            return true;
         }
 
-        public List<Course> FindAll()
+        public List<Course> FindAllCourseByUser(int userId)
         {
-            throw new NotImplementedException();
+            List<Course> courses = new List<Course>();
+            List<CourseEntity> courseEntities = new List<CourseEntity>();
+            courseEntities = courseDataAcces.FindAllCourseByUser(userId);
+            foreach (var courseEntity in courseEntities)
+            {
+                courses.Add(courseEntity.CourseConversion());
+            }
+            return courses;
+
         }
 
         public Course FindById(int id)
         {
-            throw new NotImplementedException();
+            return courseDataAcces.FindById(id).CourseConversion();
         }
 
         public Course Update(int id, Course obj)
         {
-            throw new NotImplementedException();
+            return courseDataAcces.Update(id, obj.CourseEntityConversion()).CourseConversion();
         }
     }
 }

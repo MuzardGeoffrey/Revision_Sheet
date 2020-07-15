@@ -24,22 +24,39 @@ namespace Revision_Sheet.Business
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            bool boolReturn = false;
+            sheetDataAccess.Delete(id);
+            return boolReturn;
         }
 
-        public List<Sheet> FindAll()
+        public List<Sheet> FindAllSheetByChapter(int chapterId)
         {
-            throw new NotImplementedException();
+            List<Sheet> sheets = new List<Sheet>();
+            List<SheetEntity> sheetEntities = new List<SheetEntity>();
+
+            sheetEntities = sheetDataAccess.FindAllSheetByChapter(chapterId);
+
+            foreach (var sheetEntity in sheetEntities)
+            {
+                sheets.Add(sheetEntity.SheetConversion());
+            }
+
+            return sheets;
         }
 
         public Sheet FindById(int id)
         {
-            throw new NotImplementedException();
+            Sheet sheet = new Sheet();
+            sheet = sheetDataAccess.FindById(id).SheetConversion();
+            return sheet;
         }
 
         public Sheet Update(int id, Sheet obj)
         {
-            throw new NotImplementedException();
+            Sheet sheet = new Sheet();
+            sheet = sheetDataAccess.Update(id, obj.sheetEntityConversion(1)).SheetConversion();
+            return sheet;
+
         }
     }
 }

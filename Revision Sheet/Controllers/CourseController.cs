@@ -16,14 +16,14 @@ namespace Revision_Sheet.Controllers
     {
         ICourseBusiness courseBusiness = new CourseBusiness();
 
-        /*
+        
         // GET: api/Course/5
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "pas dispo";
         }
-        */
+        
         // POST: api/Course
         [HttpPost]
         public IActionResult Post([FromBody] Course course)
