@@ -16,8 +16,8 @@ namespace Revision_Sheet.Business
             if (sheet != null)
             {
                 SheetEntity sheetEntity = new SheetEntity();
-                sheetEntity = sheetDataAccess.Create(sheet.sheetEntityConversion(1));
-                return null;
+                sheetEntity = sheetDataAccess.Create(sheet.sheetEntityConversion());
+                return sheetEntity.SheetConversion();
             }
             return null;
         }
@@ -54,7 +54,7 @@ namespace Revision_Sheet.Business
         public Sheet Update(int id, Sheet obj)
         {
             Sheet sheet = new Sheet();
-            sheet = sheetDataAccess.Update(id, obj.sheetEntityConversion(1)).SheetConversion();
+            sheet = sheetDataAccess.Update(id, obj.sheetEntityConversion()).SheetConversion();
             return sheet;
 
         }

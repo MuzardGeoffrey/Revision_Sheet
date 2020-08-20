@@ -105,7 +105,7 @@ namespace Revision_Sheet.DataAccess
             {
                 MySqlCommand cmd = db.connection.CreateCommand();
 
-                cmd.CommandText = "SELECT * FROM " + Constants.USER_TABLE_NAME + " WHERE " + Constants.USER_COLUMN_NAME_ID + " = " + id;
+                cmd.CommandText = "SELECT * FROM " + Constants.COURSE_TABLE_NAME + " WHERE " + Constants.COURSE_COLUMN_NAME_ID + " = " + id;
 
                 IDataReader reader = cmd.ExecuteReader();
 

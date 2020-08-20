@@ -16,12 +16,13 @@ namespace Revision_Sheet.Controllers
     {
         ICourseBusiness courseBusiness = new CourseBusiness();
 
-        
         // GET: api/Course/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id:int}", Name = "GetCourse")]
+        public Course Get(int id)
         {
-            return "pas dispo";
+            Course course = new Course();
+            course = courseBusiness.FindById(id);
+            return course;
         }
         
         // POST: api/Course
@@ -38,15 +39,30 @@ namespace Revision_Sheet.Controllers
         }
 
         // PUT: api/Course/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public IActionResult Put(int id, [FromBody] Course value)
         {
+            Course course = new Course();
+            course = courseBusiness.Update(id, value);
+            if (course != null)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
         {
+            bool reponse = false;
+            reponse = courseBusiness.Delete(id);
+
+            if (reponse)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

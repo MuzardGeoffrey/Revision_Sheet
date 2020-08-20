@@ -69,18 +69,15 @@ namespace Revision_Sheet.DataAccess
 
                 IDataReader reader = cmd.ExecuteReader();
 
-                for (int i = 0; i < reader.FieldCount; i++)
+                SheetEntity sheet = new SheetEntity();
+                while (reader.Read())
                 {
-                    SheetEntity sheet = new SheetEntity();
-                    while (reader.Read())
-                    {
-                        sheet.Id = reader.GetInt32(0);
-                        sheet.ChapterId = reader.GetInt32(3);
-                        sheet.Title = reader.GetString(1);
-                        sheet.Content = reader.GetString(2);
-                    }
-                    sheetEntities.Add(sheet);
+                    sheet.Id = reader.GetInt32(0);
+                    sheet.ChapterId = reader.GetInt32(3);
+                    sheet.Title = reader.GetString(1);
+                    sheet.Content = reader.GetString(2);
                 }
+                sheetEntities.Add(sheet);
             }
             catch (Exception e)
             {

@@ -10,6 +10,7 @@ namespace Revision_Sheet.BusinessObject
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Sheet> SheetList { get; set; }
+        public int CourseId { get; set; }
 
         public Chapter()
         {
@@ -28,14 +29,15 @@ namespace Revision_Sheet.BusinessObject
             SheetList = sheetList;
         }
 
-        public ChapterEntity ChapterEntityConversion(int courseId)
+        public ChapterEntity ChapterEntityConversion()
         {
             IChapterDataAccess chapterDataAccess = new ChapterDataAccess();
             return new ChapterEntity
             {
                 Id = this.Id,
                 Name = this.Name,
-                CourseId = courseId
+                CourseId = this.CourseId
+
             };
         }
     }

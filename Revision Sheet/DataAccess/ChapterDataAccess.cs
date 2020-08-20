@@ -73,15 +73,14 @@ namespace Revision_Sheet.DataAccess
 
                 while (reader.Read())
                 {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        ChapterEntity chapterEntity = new ChapterEntity();
+                    ChapterEntity chapterEntity = new ChapterEntity();
 
-                        chapterEntity.Id = reader.GetInt32(0);
-                        chapterEntity.Name = reader.GetString(1);
+                    chapterEntity.Id = reader.GetInt32(0);
+                    chapterEntity.Name = reader.GetString(1);
+                    chapterEntity.CourseId = reader.GetInt32(2);
 
-                        chapterEntities.Add(chapterEntity);
-                    }
+                    chapterEntities.Add(chapterEntity);
+                    
                 }
             }
             catch (Exception e)

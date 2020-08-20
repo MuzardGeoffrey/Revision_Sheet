@@ -22,13 +22,13 @@ namespace Revision_Sheet.Controllers
         {
             return new string[] { "value1", "value2" };
         }*/
-        /*
+
         // GET: api/Login/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id:int}", Name = "GetLogin")]
         public string Get(int id)
         {
             return "value";
-        }*/
+        }
 
         // POST: api/Login
         [HttpPost]
@@ -42,13 +42,13 @@ namespace Revision_Sheet.Controllers
         }
 
         // PUT: api/Login/5
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public void Delete(int id)
         {
         }

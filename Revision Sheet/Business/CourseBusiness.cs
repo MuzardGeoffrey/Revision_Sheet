@@ -11,6 +11,7 @@ namespace Revision_Sheet.Business
     public class CourseBusiness : ICourseBusiness
     {
         ICourseDataAccess courseDataAcces = new CourseDataAccess();
+        IChapterBusiness chapterBusiness = new ChapterBusiness();
 
         public Course Create(Course course)
         {
@@ -32,20 +33,31 @@ namespace Revision_Sheet.Business
             courseEntities = courseDataAcces.FindAllCourseByUser(userId);
             foreach (var courseEntity in courseEntities)
             {
-                courses.Add(courseEntity.CourseConversion());
+                Course course = new Course();
+                course = completeCourse(courseEntity.CourseConversion());
+                courses.Add(course);
+                
             }
             return courses;
-
         }
 
         public Course FindById(int id)
         {
-            return courseDataAcces.FindById(id).CourseConversion();
+            Course course = new Course();
+            course = courseDataAcces.FindById(id).CourseConversion();
+            course = completeCourse(course);
+            return course;
         }
 
         public Course Update(int id, Course obj)
         {
             return courseDataAcces.Update(id, obj.CourseEntityConversion()).CourseConversion();
+        }
+
+        private Course completeCourse(Course course)
+        {
+            course.ChapterList = chapterBusiness.FindAllChapterByCourse(course.Id);
+            return course;
         }
     }
 }

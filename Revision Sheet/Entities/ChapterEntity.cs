@@ -45,7 +45,8 @@ namespace RevisionSheet.DataAccess.Entities
             {
                 Id = this.Id,
                 Name = this.Name,
-                SheetList = sheets
+                SheetList = sheets,
+                CourseId = this.CourseId
             };
         }
     }

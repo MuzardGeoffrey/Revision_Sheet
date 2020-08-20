@@ -10,6 +10,7 @@ namespace Revision_Sheet.BusinessObject
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public int ChapterId { get; set; }
 
         public Sheet()
         {
@@ -28,7 +29,7 @@ namespace Revision_Sheet.BusinessObject
             Content = content;
         }
 
-        public SheetEntity sheetEntityConversion(int chapterId)
+        public SheetEntity sheetEntityConversion()
         {
             ISheetDataAccess sheetDataAccess = new SheetDataAccess();
             return new SheetEntity
@@ -36,7 +37,7 @@ namespace Revision_Sheet.BusinessObject
                 Id = this.Id,
                 Title = this.Title,
                 Content = this.Content,
-                ChapterId = chapterId
+                ChapterId = this.ChapterId
             };
         }
     }

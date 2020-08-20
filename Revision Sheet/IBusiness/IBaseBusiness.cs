@@ -5,12 +5,11 @@ namespace Revision_Sheet.IBusiness
 {
     internal interface IBaseBusiness<T>
     {
-        public T Create(T t);
-
+        public T Create(T obj);
         public Boolean Delete(int id);
 
         public T FindById(int id);
 
-        public T Update(int id, T t);
+        public T Update(int id, T obj);
     }
 }

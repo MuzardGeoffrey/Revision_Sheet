@@ -14,7 +14,7 @@ namespace Revision_Sheet.Business
         private IChapterDataAccess chapterDataAccess = new ChapterDataAccess();
         public Chapter Create(Chapter obj)
         {
-            return chapterDataAccess.Create(obj.ChapterEntityConversion(1)).ChapterConversion();
+            return chapterDataAccess.Create(obj.ChapterEntityConversion()).ChapterConversion();
         }
 
         public bool Delete(int id)
@@ -29,9 +29,14 @@ namespace Revision_Sheet.Business
             List<Chapter> chapters = new List<Chapter>();
             List<ChapterEntity> chapterEntities = new List<ChapterEntity>();
             chapterEntities = chapterDataAccess.FindAllChapterByCourse(courseId);
+            ISheetBusiness sheetBusiness = new SheetBusiness();
+
             foreach (ChapterEntity chapterEntity in chapterEntities)
             {
-                chapters.Add(chapterEntity.ChapterConversion());
+                Chapter chapter = new Chapter();
+                chapter = chapterEntity.ChapterConversion();
+                chapter.SheetList = sheetBusiness.FindAllSheetByChapter(chapter.Id);
+                chapters.Add(chapter);
             }
             return chapters;
         }
@@ -43,7 +48,7 @@ namespace Revision_Sheet.Business
 
         public Chapter Update(int id, Chapter obj)
         {
-            return chapterDataAccess.Update(id,obj.ChapterEntityConversion(1)).ChapterConversion();
+            return chapterDataAccess.Update(id,obj.ChapterEntityConversion()).ChapterConversion();
         }
     }
 }

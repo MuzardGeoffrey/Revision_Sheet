@@ -8,26 +8,20 @@ namespace RevisionSheet.DataAccess.Entities
         {
         }
 
-        public UserEntity(string firstName, string lastName, string login, string password)
+        public UserEntity(string login, string password)
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
             this.Login = login;
             this.Password = password;
         }
 
-        public UserEntity(int id, string firstName, string lastName, string login, string password)
+        public UserEntity(int id, string login, string password)
         {
             this.Id = id;
-            this.FirstName = firstName;
-            this.LastName = lastName;
             this.Login = login;
             this.Password = password;
         }
 
-        public string FirstName { get; set; }
         public int Id { get; set; }
-        public string LastName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 
@@ -36,8 +30,6 @@ namespace RevisionSheet.DataAccess.Entities
             return new User
             {
                 Id = this.Id,
-                FirstName = this.FirstName,
-                LastName = this.LastName,
                 Login = this.Login,
                 Password = this.Password
             };

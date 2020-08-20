@@ -34,7 +34,8 @@ namespace RevisionSheet.DataAccess.Entities
             {
                 Id = this.Id,
                 Title = this.Title,
-                Content = this.Content
+                Content = this.Content,
+                ChapterId = this.ChapterId
             };
         }
     }
